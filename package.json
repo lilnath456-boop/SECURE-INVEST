@@ -1,0 +1,14 @@
+{
+  "name": "secureinvest",
+  "version": "1.0.0",
+  "description": "SecureInvest website with login and registration backend",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "express": "^4.21.2",
+    "pg": "^8.13.1"
+  }
+}
