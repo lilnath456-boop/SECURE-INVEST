@@ -1,1 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SecureInvest - Investment Platform</title>
+    <link rel="stylesheet" href="Style.css">
+</head>
 
+<body>
+
+<header>
+    <nav class="navbar">
+        <h2 class="logo">SecureInvest</h2>
+
+        <div class="nav-links">
+            <a href="#home">Home</a>
+            <a href="#about">About</a>
+            <a href="#plans">Plans</a>
+            <a href="#contact">Contact</a>
+            <a href="Login.html" class="nav-button">Sign In / Register</a>
+        </div>
+    </nav>
+</header>
+
+<section id="home" class="hero">
+    <div>
+        <h1>Build Your Financial Future</h1>
+
+        <p>
+            Explore investment opportunities and learn more
+            about responsible financial planning.
+        </p>
+
+        <a href="#plans" class="btn">
+            View Investment Plans
+        </a>
+    </div>
+</section>
+
+<section id="about" class="section">
+    <h2>About Us</h2>
+
+    <p>
+        SecureInvest provides information and tools designed
+        to help people understand investment opportunities,
+        risks and long-term financial planning.
+    </p>
+</section>
+
+<section id="plans" class="section">
+
+    <h2>Investment Plans</h2>
+
+    <div class="plans">
+
+        <div class="plan">
+            <h3>Starter</h3>
+            <p class="price">₦3,000+</p>
+
+            <p>
+                Suitable for people beginning their
+                investment journey.
+            </p>
+
+            <button onclick="showMessage('Starter')">
+                Learn More
+            </button>
+        </div>
+
+        <div class="plan">
+            <h3>Growth</h3>
+            <p class="price">₦5,000+</p>
+
+            <p>
+                Designed for investors looking for
+                long-term growth.
+            </p>
+
+            <button onclick="showMessage('Growth')">
+                Learn More
+            </button>
+        </div>
+
+        <div class="plan">
+            <h3>Premium</h3>
+            <p class="price">₦10,000+</p>
+
+            <p>
+                For investors seeking a broader range
+                of opportunities.
+            </p>
+
+            <button onclick="showMessage('Premium')">
+                Learn More
+            </button>
+        </div>
+
+    </div>
+
+    <p class="warning">
+        Investment involves risk. Returns are not guaranteed.
+    </p>
+
+</section>
+
+<section id="contact" class="contact-section">
+
+    <h2>Contact Us</h2>
+
+    <p>Have questions? Contact our team.</p>
+
+    <a
+        href="https://mail.google.com/mail/?view=cm&fs=1&to=nathanielanthony813@gmail.com"
+        target="_blank"
+        class="contact-btn">
+        📧 Email Us
+    </a>
+
+    <a
+        href="tel:+2349069249335"
+        class="contact-btn">
+        📞 Call Us
+    </a>
+
+    <a
+        href="https://wa.me/2349069249335"
+        target="_blank"
+        class="contact-btn">
+        💬 WhatsApp Us
+    </a>
+
+</section>
+
+<footer>
+    <p>© 2026 SecureInvest. All rights reserved.</p>
+</footer>
+
+<script>
+function showMessage(plan) {
+    alert(
+        plan +
+        " plan selected.\n\n" +
+        "Please contact us for more information."
+    );
+}
+</script>
+
+</body>
+  </html>
