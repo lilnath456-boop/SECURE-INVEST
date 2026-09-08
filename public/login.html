@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0">
+
+    <title>SecureInvest - Login</title>
+
+    <link rel="stylesheet" href="Style.css">
+
+</head>
+
+<body>
+
+<div class="auth-container">
+
+    <div class="auth-box">
+
+        <h1>SecureInvest</h1>
+
+        <h2 id="formTitle">
+            Sign In
+        </h2>
+
+        <!-- LOGIN -->
+
+        <form id="loginForm">
+
+            <input
+                type="email"
+                id="loginEmail"
+                placeholder="Email address"
+                required
+            >
+
+            <input
+                type="password"
+                id="loginPassword"
+                placeholder="Password"
+                required
+            >
+
+            <button type="submit">
+                Sign In
+            </button>
+
+            <p>
+                Don't have an account?
+
+                <a
+                    href="#"
+                    onclick="showRegister(); return false;">
+                    Register
+                </a>
+            </p>
+
+        </form>
+
+
+        <!-- REGISTER -->
+
+        <form
+            id="registerForm"
+            style="display:none;">
+
+            <input
+                type="text"
+                id="registerName"
+                placeholder="Full name"
+                required
+            >
+
+            <input
+                type="email"
+                id="registerEmail"
+                placeholder="Email address"
+                required
+            >
+
+            <input
+                type="password"
+                id="registerPassword"
+                placeholder="Create password"
+                minlength="8"
+                required
+            >
+
+            <input
+                type="password"
+                id="confirmPassword"
+                placeholder="Confirm password"
+                minlength="8"
+                required
+            >
+
+            <button type="submit">
+                Create Account
+            </button>
+
+            <p>
+                Already have an account?
+
+                <a
+                    href="#"
+                    onclick="showLogin(); return false;">
+                    Sign In
+                </a>
+            </p>
+
+        </form>
+
+        <div id="message"></div>
+
+    </div>
+
+</div>
+
+
+<script>
+
+function showRegister() {
+
+    document.getElementById("loginForm")
+        .style.display = "none";
+
+    document.getElementById("registerForm")
+        .style.display = "block";
+
+    document.getElementById("formTitle")
+        .textContent = "Create Account";
+}
+
+
+function showLogin() {
+
+    document.getElementById("registerForm")
+        .style.display = "none";
+
+    document.getElementById("loginForm")
+        .style.display = "block";
+
+    document.getElementById("formTitle")
+        .textContent = "Sign In";
+}
+
+
+/* LOGIN */
+
+document
+    .getElementById("loginForm")
+    .addEventListener("submit", async function(event) {
+
+        event.preventDefault();
+
+        const email =
+            document.getElementById("loginEmail").value;
+
+        const password =
+            document.getElementById("loginPassword").value;
+
+        const message =
+            document.getElementById("message");
+
+        try {
+
+            const response = await fetch(
+                "/api/login",
+                {
+                    method: "POST",
+
+                    headers: {
+                        "Content-Type":
+                            "application/json"
+                    },
+
+                    body: JSON.stringify({
+                        email: email,
+                        password: password
+                    })
+                }
+            );
+
+            const data =
+                await response.json();
+
+            if (!response.ok) {
+
+                message.textContent =
+                    data.message ||
+                    "Login failed.";
+
+                return;
+            }
+
+            message.textContent =
+                "Login successful. Welcome " +
+                data.user.name + "!";
+
+        } catch (error) {
+
+            message.textContent =
+                "Unable to connect to server.";
+
+        }
+
+    });
+
+
+/* REGISTER */
+
+document
+    .getElementById("registerForm")
+    .addEventListener("submit", async function(event) {
+
+        event.preventDefault();
+
+        const name =
+            document.getElementById("registerName").value;
+
+        const email =
+            document.getElementById("registerEmail").value;
+
+        const password =
+            document.getElementById("registerPassword").value;
+
+        const confirmPassword =
+            document.getElementById("confirmPassword").value;
+
+        const message =
+            document.getElementById("message");
+
+
+        if (password !== confirmPassword) {
+
+            message.textContent =
+                "Passwords do not match.";
+
+            return;
+        }
+
+
+        try {
+
+            const response = await fetch(
+                "/api/register",
+                {
+                    method: "POST",
+
+                    headers: {
+                        "Content-Type":
+                            "application/json"
+                    },
+
+                    body: JSON.stringify({
+                        name: name,
+                        email: email,
+                        password: password
+                    })
+                }
+            );
+
+
+            const data =
+                await response.json();
+
+
+            if (!response.ok) {
+
+                message.textContent =
+                    data.message ||
+                    "Registration failed.";
+
+                return;
+            }
+
+
+            message.textContent =
+                "Account created successfully.";
+
+            document
+                .getElementById("registerForm")
+                .reset();
+
+        } catch (error) {
+
+            message.textContent =
+                "Unable to connect to server.";
+
+        }
+
+    });
+
+</script>
+
+</body>
+  </html>
